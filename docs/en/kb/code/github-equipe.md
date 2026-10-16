@@ -75,7 +75,7 @@ To push their code to GitHub from Android Studio, students use a **classic perso
 !!! note "No approval for classic tokens"
     Classic tokens don't go through an organization approval. On the repository, they only carry the student's rights, i.e. those of the `code` team: removing a student from the team or the organization is enough to cut their access.
 
-Creating the token on the student side is covered in [Workstation and first build](poste-et-premier-build.md#6-create-your-github-access-token).
+Creating the token on the student side is covered in [Workstation and first build](poste-et-premier-build.md#7-create-your-github-access-token).
 
 ## 6. Protect branches with rulesets (recommended)
 

@@ -75,7 +75,7 @@ Pour envoyer leur code sur GitHub depuis Android Studio, les élèves utilisent 
 !!! note "Pas de validation pour les jetons *classic*"
     Les jetons *classic* ne passent pas par une approbation de l'organisation. Sur le dépôt, ils ne donnent que les droits de l'élève, c'est-à-dire ceux de l'équipe `code` : retirer un élève de l'équipe ou de l'organisation suffit à couper son accès.
 
-La création du jeton côté élève est décrite dans [Poste de travail et premier build](poste-et-premier-build.md#6-creer-son-jeton-dacces-github).
+La création du jeton côté élève est décrite dans [Poste de travail et premier build](poste-et-premier-build.md#7-creer-son-jeton-dacces-github).
 
 ## 6. Protéger les branches avec des *rulesets* (conseillé)
 

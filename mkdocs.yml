@@ -89,6 +89,9 @@ plugins:
             Mettre en place GitHub: Set up GitHub
             Poste de travail et premier build: Workstation and first build
             Gestion de configuration: Configuration management
+            Coder le robot: Coding the robot
+            S'entraîner chez soi: Practice at home
+            S'entraîner avec virtual_robot: Practice with virtual_robot
             Contribuer: Contributing
 
 nav:
@@ -100,10 +103,13 @@ nav:
       - Build: kb/build/index.md
       - Code:
           - kb/code/index.md
-          - Pourquoi Git et GitHub ?: kb/code/pourquoi-github.md
-          - Mettre en place GitHub: kb/code/github-equipe.md
-          - Poste de travail et premier build: kb/code/poste-et-premier-build.md
-          - Gestion de configuration: kb/code/gestion-de-configuration.md
+          - Coder le robot:
+              - Pourquoi Git et GitHub ?: kb/code/pourquoi-github.md
+              - Mettre en place GitHub: kb/code/github-equipe.md
+              - Poste de travail et premier build: kb/code/poste-et-premier-build.md
+              - Gestion de configuration: kb/code/gestion-de-configuration.md
+          - S'entraîner chez soi:
+              - S'entraîner avec virtual_robot: kb/code/sentrainer-virtual-robot.md
       - Outreach: kb/outreach/index.md
       - Contribuer: kb/contribuer.md
   - Nous soutenir: soutenir.md

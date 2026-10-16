@@ -93,7 +93,7 @@ What we learned setting up our team, written for **every FTC team**, French-spea
 <div class="br-card br-card--link" markdown>:material-code-braces:
 ### [Code](kb/code/index.md)
 <p>Git and GitHub, Android Studio, FTC SDK, working together on the code.</p>
-<span class="br-card__more">4 guides →</span>
+<span class="br-card__more">5 guides →</span>
 </div>
 <div class="br-card br-card--link" markdown>:material-bullhorn-outline:
 ### [Outreach](kb/outreach/index.md)

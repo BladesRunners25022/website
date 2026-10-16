@@ -13,7 +13,7 @@ description: Git, Android Studio, access token, cloning the team repository and 
     Read [Why Git and GitHub?](pourquoi-github.md) first: 5 minutes to understand what everything you install here is for.
 
 !!! tip "Download at home"
-    School networks often block Android Studio and Gradle downloads. Do steps 2 to 5 on a home connection: after that, everything is cached.
+    School networks often block Android Studio and Gradle downloads. Do steps 2 to 6 on a home connection: after that, everything is cached.
 
 This guide covers what is specific to this season and to our GitHub setup. For an illustrated walkthrough of the Android Studio interface, **[gm0 explains it very well](https://gm0.org/en/latest/docs/software/getting-started/using-android-studio.html)**: we link to it rather than copy it.
 
@@ -26,11 +26,12 @@ This guide covers what is specific to this season and to our GitHub setup. For a
 | Android Gradle Plugin (AGP) | 8.13.2 |
 | Android Studio **recommended** | Rabbit 1 (2026.2.1), stable since October 1, 2026 |
 | Android Studio **minimum** | Narwhal 3 Feature Drop (2025.1.3) |
+| Additional JDK | Liberica JDK 17 *Full* (simulator, fallback) |
 
 Rabbit supports AGP 7.1 to 9.4, so it is compatible with SDK v12.0.
 
 !!! warning "The FTC Docs “Installing Android Studio” page is out of date"
-    It still describes Android Studio Ladybug and installing a separate JDK 17. For the 2026-27 season, follow the versions above instead.
+    It still describes Android Studio Ladybug and a JDK 17 to install for the build. Here, the build uses the JDK bundled with Android Studio; Liberica 17 (step 4) is for the simulator and as a fallback.
 
 ## 1. Create your GitHub account and join the team
 
@@ -70,7 +71,22 @@ git config --global user.email "github-account-address@example.com"
 
 Details and screenshots: [gm0, *Using Android Studio*](https://gm0.org/en/latest/docs/software/getting-started/using-android-studio.html).
 
-## 4. Clone the team repository
+## 4. Install Liberica JDK 17 *Full*
+
+Android Studio already ships its own JDK (the Java that compiles the code), and it is enough for the team project. We also install **Liberica JDK 17, *Full* version**:
+
+- to [practice at home with virtual_robot](sentrainer-virtual-robot.md): the simulator needs JavaFX, which only this version includes;
+- as a fallback JDK if the project build fails with Android Studio's JDK (see troubleshooting).
+
+1. Open [bell-sw.com/pages/downloads](https://bell-sw.com/pages/downloads/#jdk-17-lts) and select **JDK 17 LTS**.
+2. **Don't click** the big download buttons: they give the standard version, without JavaFX.
+3. Scroll down to your system (Windows 64-bit or macOS), pick your processor, then under `Package`, select **`Full JDK`**.
+4. Download the installer (`.msi` on Windows, `.dmg` on macOS) and run it. The `Add to PATH`, `Set JAVA_HOME` and file association options are not needed: you can uncheck them.
+
+!!! warning "Version 17, not another one"
+    The author of virtual_robot reports that Liberica 21 does not work with the simulator. Stick with 17.
+
+## 5. Clone the team repository
 
 The team repository is public: no token or GitHub login is needed to clone it.
 
@@ -79,7 +95,7 @@ The team repository is public: no token or GitHub login is needed to clone it.
 3. `Directory`: a short folder path **with no spaces or accented characters**, for example `C:\ftc\FtcRobotController` or `~/ftc/FtcRobotController`.
 4. `Clone`, then `Trust Project`.
 
-## 5. Run the first build
+## 6. Run the first build
 
 !!! danger "Decline any Gradle or AGP upgrade"
     When the project opens, Android Studio may offer "Upgrade Gradle" or the **AGP Upgrade Assistant**: Rabbit suggests moving to AGP 9.x. **Decline.** The FTC project must keep the versions shipped by *FIRST* (Gradle 9.1, AGP 8.13.2).
@@ -91,9 +107,9 @@ The team repository is public: no token or GitHub login is needed to clone it.
 It worked when the `Build` tab at the bottom shows **`BUILD SUCCESSFUL`**.
 
 !!! question "JDK: to be confirmed"
-    With Gradle 9.1, the JDK bundled with Android Studio **should be enough**, with no separate JDK install. We have **not yet tested** this on every setup. If you can confirm it (or not), please tell us: see [Contributing](../contribuer.md). If it fails, see troubleshooting below.
+    With Gradle 9.1, the JDK bundled with Android Studio **should be enough**, without needing Liberica. We have **not yet tested** this on every setup. If you can confirm it (or not), please tell us: see [Contributing](../contribuer.md). If it fails, see troubleshooting below.
 
-## 6. Create your GitHub access token
+## 7. Create your GitHub access token
 
 To **send** code to GitHub (*push*) and work with pull requests, you need to authenticate. The token replaces your password: it is what Android Studio presents to GitHub. **Treat it like a password**: never paste it into a chat or into the code.
 
@@ -113,12 +129,12 @@ To **send** code to GitHub (*push*) and work with pull requests, you need to aut
 4. `Generate token`, then copy it right away: GitHub only shows it once.
 
 !!! tip "Didn't copy the token, or lost it?"
-    No need to panic: GitHub can't show it again, but you can make a new one. In `Settings` → `Developer settings` → `Personal access tokens` → `Tokens (classic)`, delete the old token (`Delete`), then create a new one by going through this step again from the start. If the token was already registered in Android Studio, replace it in step 7.
+    No need to panic: GitHub can't show it again, but you can make a new one. In `Settings` → `Developer settings` → `Personal access tokens` → `Tokens (classic)`, delete the old token (`Delete`), then create a new one by going through this step again from the start. If the token was already registered in Android Studio, replace it in step 8.
 
 !!! warning "A classic token opens all your repositories"
     With `repo`, the token gives access to **every** repository your account can reach, not just the team's. Keep an expiration date and delete the token (`Settings` → `Developer settings` → `Personal access tokens` → `Tokens (classic)`) if you think it leaked.
 
-## 7. Use the token in Android Studio
+## 8. Use the token in Android Studio
 
 You register the token once in Android Studio, which then uses it automatically for every *push* to GitHub and to show pull requests.
 
@@ -135,7 +151,7 @@ You register the token once in Android Studio, which then uses it automatically 
 
     The credentials are then remembered: you will only be asked again when the token expires.
 
-## 8. First OpMode, first branch
+## 9. First OpMode, first branch
 
 All team code goes in the `TeamCode` module. *FIRST*'s samples live in the `FtcRobotController` module and are not modified.
 
@@ -144,7 +160,7 @@ All team code goes in the `TeamCode` module. *FIRST*'s samples live in the `FtcR
 3. Copy `BasicOpMode_Linear.java` into `TeamCode/src/main/java/org/firstinspires/ftc/teamcode`.
 4. In the copied file, delete the `@Disabled` line and change the name in `@TeleOp(name = "…")`.
 5. `Build` → `Make Project`: still `BUILD SUCCESSFUL`?
-6. `Git` → `Commit`: check the file, write a clear message ("Add first TeleOp OpMode"), then `Commit and Push`. This *push* is what uses your token (step 7).
+6. `Git` → `Commit`: check the file, write a clear message ("Add first TeleOp OpMode"), then `Commit and Push`. This *push* is what uses your token (step 8).
 7. On GitHub, open the suggested pull request to `main`.
 
 Branch and pull request rules are explained in [Configuration management](gestion-de-configuration.md).
@@ -158,13 +174,13 @@ Branch and pull request rules are explained in [Configuration management](gestio
     Android Studio is too old. Install Rabbit (or at least Narwhal 3 Feature Drop, 2025.1.3): step 3.
 
 ??? failure "“Unsupported class file major version” or “Incompatible Gradle JVM”"
-    Wrong Java. In `Gradle JDK` (step 5), select the JDK bundled with Android Studio (`jbr-…`). If the error persists, install JDK 21 from [adoptium.net](https://adoptium.net/temurin/releases/?version=21), select it, and report your case to us (see the "to be confirmed" box above).
+    Wrong Java. In `Gradle JDK` (step 6), select the JDK bundled with Android Studio (`jbr-…`). If the error persists, select Liberica 17 (installed in step 4), and report your case to us (see the "to be confirmed" box above).
 
 ??? failure "Gradle sync never ends or fails on a download"
     Filtered network, typically at school. Do the first sync on another connection; after that, everything is cached.
 
 ??? failure "“Authentication failed” or “Permission denied” on push"
-    Token expired or missing scopes (check `repo` and `workflow`), or organization invitation not accepted yet (step 1). Go back to steps 6 and 7.
+    Token expired or missing scopes (check `repo` and `workflow`), or organization invitation not accepted yet (step 1). Go back to steps 7 and 8.
 
 ??? failure "Path errors or files not found on Windows"
     The project folder contains a space or an accented character, or is nested too deep. Clone again into `C:\ftc\`.

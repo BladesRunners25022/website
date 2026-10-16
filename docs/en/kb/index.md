@@ -23,7 +23,7 @@ They are written first for French-speaking FTC teams, and translated into Englis
 <div class="br-card br-card--link" markdown>:material-code-braces:
 ### [Code](code/index.md)
 <p>Git and GitHub, Android Studio, FTC SDK, working together on the code.</p>
-<span class="br-card__more">4 guides →</span>
+<span class="br-card__more">5 guides →</span>
 </div>
 <div class="br-card br-card--link" markdown>:material-bullhorn-outline:
 ### [Outreach](outreach/index.md)

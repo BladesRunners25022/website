@@ -23,7 +23,7 @@ Ils s'adressent d'abord aux équipes FTC francophones, et sont traduits en angla
 <div class="br-card br-card--link" markdown>:material-code-braces:
 ### [Code](code/index.md)
 <p>Git et GitHub, Android Studio, SDK FTC, travail à plusieurs sur le code.</p>
-<span class="br-card__more">4 guides →</span>
+<span class="br-card__more">5 guides →</span>
 </div>
 <div class="br-card br-card--link" markdown>:material-bullhorn-outline:
 ### [Outreach](outreach/index.md)

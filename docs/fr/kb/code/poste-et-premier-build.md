@@ -13,7 +13,7 @@ description: Git, Android Studio, jeton d'accès, clonage du dépôt de l'équip
     Lisez d'abord [Pourquoi Git et GitHub ?](pourquoi-github.md) : 5 minutes pour comprendre à quoi sert tout ce qu'on installe ici.
 
 !!! tip "Faites les téléchargements chez vous"
-    Les réseaux des établissements scolaires bloquent souvent les téléchargements d'Android Studio et de Gradle. Faites les étapes 2 à 5 sur une connexion personnelle : ensuite, tout est en cache.
+    Les réseaux des établissements scolaires bloquent souvent les téléchargements d'Android Studio et de Gradle. Faites les étapes 2 à 6 sur une connexion personnelle : ensuite, tout est en cache.
 
 Ce guide reprend les points propres à la saison et à notre organisation GitHub. Pour le pas-à-pas illustré de l'interface d'Android Studio, **[gm0 l'explique très bien](https://gm0.org/en/latest/docs/software/getting-started/using-android-studio.html)** : nous y renvoyons plutôt que de le recopier.
 
@@ -26,11 +26,12 @@ Ce guide reprend les points propres à la saison et à notre organisation GitHub
 | Android Gradle Plugin (AGP) | 8.13.2 |
 | Android Studio **conseillé** | Rabbit 1 (2026.2.1), stable depuis le 1er octobre 2026 |
 | Android Studio **minimum** | Narwhal 3 Feature Drop (2025.1.3) |
+| JDK supplémentaire | Liberica JDK 17 *Full* (simulateur, secours) |
 
 Rabbit prend en charge les AGP 7.1 à 9.4 : il est compatible avec le SDK v12.0.
 
 !!! warning "La page FTC Docs « Installing Android Studio » est obsolète"
-    Elle décrit encore Android Studio Ladybug et l'installation séparée d'un JDK 17. Pour la saison 2026-27, suivez plutôt les versions ci-dessus.
+    Elle décrit encore Android Studio Ladybug et un JDK 17 à installer pour le build. Ici, le build utilise le JDK fourni avec Android Studio ; Liberica 17 (étape 4) sert au simulateur et en secours.
 
 ## 1. Créer son compte GitHub et rejoindre l'équipe
 
@@ -70,7 +71,22 @@ git config --global user.email "adresse-du-compte-github@exemple.fr"
 
 Détails et captures d'écran : [gm0, *Using Android Studio*](https://gm0.org/en/latest/docs/software/getting-started/using-android-studio.html).
 
-## 4. Cloner le dépôt de l'équipe
+## 4. Installer Liberica JDK 17 *Full*
+
+Android Studio fournit déjà son propre JDK (le Java qui compile le code), et il suffit pour le projet de l'équipe. On installe en plus **Liberica JDK 17, version *Full*** :
+
+- pour [s'entraîner chez soi avec virtual_robot](sentrainer-virtual-robot.md) : le simulateur a besoin de JavaFX, inclus seulement dans cette version ;
+- comme JDK de secours si le build du projet échoue avec le JDK d'Android Studio (voir le dépannage).
+
+1. Ouvrez [bell-sw.com/pages/downloads](https://bell-sw.com/pages/downloads/#jdk-17-lts) et sélectionnez **JDK 17 LTS**.
+2. **Ne cliquez pas** sur les gros boutons de téléchargement : ils donnent la version standard, sans JavaFX.
+3. Descendez jusqu'à votre système (Windows 64 bits ou macOS), choisissez votre processeur, puis dans `Package`, sélectionnez **`Full JDK`**.
+4. Téléchargez l'installeur (`.msi` sous Windows, `.dmg` sous macOS) et lancez-le. Les options `Add to PATH`, `Set JAVA_HOME` et les associations de fichiers ne sont pas nécessaires : vous pouvez les décocher.
+
+!!! warning "La version 17, pas une autre"
+    L'auteur de virtual_robot indique que Liberica 21 ne fonctionne pas avec le simulateur. Restez sur la 17.
+
+## 5. Cloner le dépôt de l'équipe
 
 Le dépôt de l'équipe est public : pas besoin de jeton ni de connexion à GitHub pour le cloner.
 
@@ -79,7 +95,7 @@ Le dépôt de l'équipe est public : pas besoin de jeton ni de connexion à GitH
 3. `Directory` : un dossier court, **sans espace ni accent**, par exemple `C:\ftc\FtcRobotController` ou `~/ftc/FtcRobotController`.
 4. `Clone`, puis `Trust Project`.
 
-## 5. Lancer le premier build
+## 6. Lancer le premier build
 
 !!! danger "Refusez toute mise à jour de Gradle ou de l'AGP"
     À l'ouverture du projet, Android Studio peut proposer « Upgrade Gradle » ou l'**AGP Upgrade Assistant** : Rabbit propose de passer en AGP 9.x. **Refusez.** Le projet FTC doit garder les versions fournies par *FIRST* (Gradle 9.1, AGP 8.13.2).
@@ -91,9 +107,9 @@ Le dépôt de l'équipe est public : pas besoin de jeton ni de connexion à GitH
 C'est réussi quand l'onglet `Build`, en bas, affiche **`BUILD SUCCESSFUL`**.
 
 !!! question "JDK : à confirmer"
-    Avec Gradle 9.1, le JDK fourni avec Android Studio **devrait suffire**, sans installer de JDK séparé. Nous ne l'avons **pas encore testé** sur toutes les configurations. Si vous le confirmez (ou l'infirmez), dites-le-nous : voir [Contribuer](../contribuer.md). En cas d'échec, voir le dépannage ci-dessous.
+    Avec Gradle 9.1, le JDK fourni avec Android Studio **devrait suffire**, sans passer par Liberica. Nous ne l'avons **pas encore testé** sur toutes les configurations. Si vous le confirmez (ou l'infirmez), dites-le-nous : voir [Contribuer](../contribuer.md). En cas d'échec, voir le dépannage ci-dessous.
 
-## 6. Créer son jeton d'accès GitHub
+## 7. Créer son jeton d'accès GitHub
 
 Pour **envoyer** du code sur GitHub (*push*) et travailler avec les pull requests, il faut s'authentifier. Le jeton remplace votre mot de passe : c'est lui qu'Android Studio présente à GitHub. **Traitez-le comme un mot de passe** : ne le collez jamais dans une messagerie ni dans le code.
 
@@ -113,12 +129,12 @@ Pour **envoyer** du code sur GitHub (*push*) et travailler avec les pull request
 4. `Generate token`, puis copiez-le tout de suite : GitHub ne l'affiche qu'une fois.
 
 !!! tip "Jeton pas copié ou perdu ?"
-    Pas de panique : GitHub ne peut pas vous le réafficher, mais vous pouvez en refaire un. Dans `Settings` → `Developer settings` → `Personal access tokens` → `Tokens (classic)`, supprimez l'ancien jeton (`Delete`), puis recréez-en un en reprenant cette étape depuis le début. Si le jeton était déjà enregistré dans Android Studio, remplacez-le à l'étape 7.
+    Pas de panique : GitHub ne peut pas vous le réafficher, mais vous pouvez en refaire un. Dans `Settings` → `Developer settings` → `Personal access tokens` → `Tokens (classic)`, supprimez l'ancien jeton (`Delete`), puis recréez-en un en reprenant cette étape depuis le début. Si le jeton était déjà enregistré dans Android Studio, remplacez-le à l'étape 8.
 
 !!! warning "Un jeton *classic* ouvre tous vos dépôts"
     Avec `repo`, le jeton donne accès à **tous** les dépôts auxquels votre compte a accès, pas seulement à celui de l'équipe. Gardez une date d'expiration et supprimez le jeton (`Settings` → `Developer settings` → `Personal access tokens` → `Tokens (classic)`) si vous pensez qu'il a fuité.
 
-## 7. Utiliser le jeton dans Android Studio
+## 8. Utiliser le jeton dans Android Studio
 
 On enregistre le jeton une fois dans Android Studio, qui s'en sert ensuite automatiquement à chaque *push* vers GitHub et pour afficher les pull requests.
 
@@ -135,7 +151,7 @@ On enregistre le jeton une fois dans Android Studio, qui s'en sert ensuite autom
 
     Les identifiants sont ensuite mémorisés : la question ne revient qu'à l'expiration du jeton.
 
-## 8. Premier OpMode, première branche
+## 9. Premier OpMode, première branche
 
 Tout le code de l'équipe va dans le module `TeamCode`. Les exemples de *FIRST* sont dans le module `FtcRobotController` et ne se modifient pas.
 
@@ -144,7 +160,7 @@ Tout le code de l'équipe va dans le module `TeamCode`. Les exemples de *FIRST* 
 3. Copiez `BasicOpMode_Linear.java` dans `TeamCode/src/main/java/org/firstinspires/ftc/teamcode`.
 4. Dans le fichier copié, supprimez la ligne `@Disabled` et changez le nom dans `@TeleOp(name = "…")`.
 5. `Build` → `Make Project` : toujours `BUILD SUCCESSFUL` ?
-6. `Git` → `Commit` : cochez le fichier, écrivez un message clair (« Ajout premier OpMode TeleOp »), puis `Commit and Push`. C'est ce *push* qui utilise votre jeton (étape 7).
+6. `Git` → `Commit` : cochez le fichier, écrivez un message clair (« Ajout premier OpMode TeleOp »), puis `Commit and Push`. C'est ce *push* qui utilise votre jeton (étape 8).
 7. Sur GitHub, ouvrez la pull request proposée vers `main`.
 
 Les règles de branches et de pull requests sont expliquées dans [Gestion de configuration](gestion-de-configuration.md).
@@ -158,13 +174,13 @@ Les règles de branches et de pull requests sont expliquées dans [Gestion de co
     Android Studio trop ancien. Installez Rabbit (ou au minimum Narwhal 3 Feature Drop, 2025.1.3) : étape 3.
 
 ??? failure "« Unsupported class file major version » ou « Incompatible Gradle JVM »"
-    Mauvais Java. Dans `Gradle JDK` (étape 5), sélectionnez le JDK fourni avec Android Studio (`jbr-…`). Si l'erreur persiste, installez un JDK 21 depuis [adoptium.net](https://adoptium.net/temurin/releases/?version=21), sélectionnez-le, et signalez-nous le cas (voir l'encadré « à confirmer » ci-dessus).
+    Mauvais Java. Dans `Gradle JDK` (étape 6), sélectionnez le JDK fourni avec Android Studio (`jbr-…`). Si l'erreur persiste, sélectionnez Liberica 17 (installé à l'étape 4), et signalez-nous le cas (voir l'encadré « à confirmer » ci-dessus).
 
 ??? failure "La synchronisation Gradle tourne sans fin ou échoue sur un téléchargement"
     Réseau filtré, typiquement en établissement scolaire. Faites la première synchronisation sur une autre connexion ; ensuite tout est en cache.
 
 ??? failure "« Authentication failed » ou « Permission denied » au push"
-    Jeton expiré ou permissions manquantes (vérifiez `repo` et `workflow`), ou invitation dans l'organisation pas encore acceptée (étape 1). Revoyez les étapes 6 et 7.
+    Jeton expiré ou permissions manquantes (vérifiez `repo` et `workflow`), ou invitation dans l'organisation pas encore acceptée (étape 1). Revoyez les étapes 7 et 8.
 
 ??? failure "Erreurs de chemin ou fichiers introuvables sous Windows"
     Le dossier du projet contient un espace, un accent, ou est trop profond. Reclonez dans `C:\ftc\`.

@@ -7,7 +7,9 @@ hide:
 
 # Code
 
-Programmer le robot avec le SDK FTC, et organiser le travail à plusieurs sur le même code.
+Programmer le robot avec le SDK FTC, organiser le travail à plusieurs sur le même code, et s'entraîner chez soi.
+
+## Coder le robot
 
 <div class="br-cards" markdown>
 <div class="br-card br-card--link" markdown>:material-help-circle-outline:
@@ -29,6 +31,21 @@ Programmer le robot avec le SDK FTC, et organiser le travail à plusieurs sur le
 ### [Gestion de configuration](gestion-de-configuration.md)
 <p><strong>Toute l'équipe.</strong> Branches, pull requests, mises à jour du SDK, versions de compétition.</p>
 <span class="br-card__more">Lire le guide →</span>
+</div>
+</div>
+
+## S'entraîner chez soi
+
+<div class="br-cards" markdown>
+<div class="br-card br-card--link" markdown>:material-monitor-shimmer:
+### [S'entraîner avec virtual_robot](sentrainer-virtual-robot.md)
+<p><strong>Élèves</strong> · installer le simulateur virtual_robot et faire les exercices du livre sur son ordinateur, sans matériel.</p>
+<span class="br-card__more">Lire le guide →</span>
+</div>
+<div class="br-card br-card--link" markdown>:material-book-open-variant:
+### [Learn Java for FTC](https://github.com/alan412/LearnJavaForFTC/blob/master/LearnJavaForFTC.pdf){ target="_blank" rel="noopener" }
+<p><strong>Élèves</strong> · apprendre Java en partant de zéro, avec des exercices pensés pour le SDK FTC. Livre PDF gratuit d'Alan G. Smith, en anglais.</p>
+<span class="br-card__more">Ouvrir le PDF →</span>
 </div>
 </div>
 
