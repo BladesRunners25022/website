@@ -1,0 +1,135 @@
+site_name: Blades Runners 92
+site_description: Équipe FIRST Tech Challenge de Levallois-Perret accueillie par le lycée Léonard de Vinci, et sa base de connaissances FTC ouverte à toutes les équipes.
+site_url: https://bladesrunners25022.github.io/website/
+repo_url: https://github.com/BladesRunners25022/website
+repo_name: BladesRunners25022/website
+edit_uri: edit/main/docs/
+
+extra:
+  team:
+    # Numéro FTC déduit du nom de l'organisation GitHub : à vérifier.
+    number: "25022"
+  # SDK FTC de référence de la base de connaissances : à mettre à jour à chaque nouvelle version
+  # (voir la page « Contribuer »). Affiché dans le pied de page des articles.
+  sdk:
+    version: "12.0"
+    season: "2026-27"
+    gradle: "9.1"
+    agp: "8.13.2"
+  social:
+    - icon: material/email-outline
+      link: mailto:blades.runners.92@gmail.com
+      name: blades.runners.92@gmail.com
+    - icon: fontawesome/brands/github
+      link: https://github.com/BladesRunners25022
+      name: GitHub
+  generator: false
+
+extra_css:
+  - assets/stylesheets/blades.css
+
+theme:
+  name: material
+  custom_dir: overrides
+  language: fr
+  logo: assets/images/logo-128.png
+  favicon: assets/images/favicon.png
+  font:
+    text: Inter
+    code: JetBrains Mono
+  palette:
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Mode clair
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Mode sombre
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.indexes
+    - navigation.footer
+    - navigation.top
+    - search.highlight
+    - content.code.copy
+    - content.action.edit
+
+plugins:
+  - search
+  - i18n:
+      docs_structure: folder
+      fallback_to_default: true
+      reconfigure_material: true
+      reconfigure_search: true
+      languages:
+        - locale: fr
+          name: Français
+          default: true
+          build: true
+        - locale: en
+          name: English
+          build: true
+          site_description: FIRST Tech Challenge team from Levallois-Perret, France, hosted by Lycée Léonard de Vinci, and its FTC knowledge base open to every team.
+          nav_translations:
+            Accueil: Home
+            L'équipe: The team
+            Le robot: The robot
+            Nous soutenir: Support us
+            Base de connaissances: Knowledge base
+            Pourquoi Git et GitHub ?: Why Git and GitHub?
+            Mettre en place GitHub: Set up GitHub
+            Poste de travail et premier build: Workstation and first build
+            Gestion de configuration: Configuration management
+            Contribuer: Contributing
+
+nav:
+  - Accueil: index.md
+  - L'équipe: equipe.md
+  - Le robot: robot.md
+  - Base de connaissances:
+      - kb/index.md
+      - Build: kb/build/index.md
+      - Code:
+          - kb/code/index.md
+          - Pourquoi Git et GitHub ?: kb/code/pourquoi-github.md
+          - Mettre en place GitHub: kb/code/github-equipe.md
+          - Poste de travail et premier build: kb/code/poste-et-premier-build.md
+          - Gestion de configuration: kb/code/gestion-de-configuration.md
+      - Outreach: kb/outreach/index.md
+      - Contribuer: kb/contribuer.md
+  - Nous soutenir: soutenir.md
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+validation:
+  links:
+    anchors: warn

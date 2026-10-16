@@ -1,0 +1,405 @@
+/* Identité Blades Runners 92 : couleurs tirées du logo (marine, cyan, orange), titres en italique gras
+   comme le lettrage du logo, traînées de vitesse en motif. Composants : br-hero, br-stats, br-split,
+   br-panel, br-cards, br-band, br-blueprint, br-badge, br-timeline. */
+
+:root {
+  --br-navy: #01244a;        /* fond du logo */
+  --br-navy-deep: #00172f;
+  --br-navy-2: #0a3566;
+  --br-cyan: #1cc3f5;
+  --br-blue: #1a8fe3;
+  --br-orange: #f47a20;
+  --br-display: "Exo 2", "Arial Black", system-ui, sans-serif;
+
+  --md-primary-fg-color: var(--br-navy);
+  --md-primary-fg-color--light: var(--br-navy-2);
+  --md-primary-fg-color--dark: var(--br-navy-deep);
+  --md-primary-bg-color: #ffffff;
+  --md-primary-bg-color--light: rgba(255, 255, 255, .75);
+  --md-accent-fg-color: var(--br-orange);
+  --md-accent-fg-color--transparent: rgba(244, 122, 32, .12);
+  --md-footer-bg-color: var(--br-navy-deep);
+  --md-footer-bg-color--dark: #000f20;
+}
+
+[data-md-color-scheme="default"] {
+  --md-typeset-a-color: #0b6fb8;
+  --md-footer-bg-color: var(--br-navy-deep);
+  --md-footer-bg-color--dark: #000f20;
+  --br-surface: #f2f6fb;
+  --br-surface-line: #d8e3ef;
+  --br-muted: #4a5b70;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-hue: 212;
+  --md-default-bg-color: #021a36;
+  --md-default-bg-color--light: rgba(2, 26, 54, .54);
+  --md-default-bg-color--lighter: rgba(2, 26, 54, .26);
+  --md-default-bg-color--lightest: rgba(2, 26, 54, .07);
+  --md-code-bg-color: #06284d;
+  --md-typeset-a-color: #4fd0f7;
+  --md-accent-fg-color: #ff9a4d;
+  --md-footer-bg-color: #011226;
+  --md-footer-bg-color--dark: #000b18;
+  --br-surface: #052b52;
+  --br-surface-line: #0f3d6e;
+  --br-muted: #a8bdd4;
+}
+
+/* Boutons secondaires lisibles en mode sombre */
+[data-md-color-scheme="slate"] .md-typeset .md-button:not(.md-button--primary) { color: var(--br-cyan); border-color: var(--br-cyan); }
+[data-md-color-scheme="slate"] .md-typeset .md-button:not(.md-button--primary):hover { background: var(--br-cyan); color: var(--br-navy-deep); }
+
+/* ---------- Titres ---------- */
+
+.md-typeset h1,
+.md-typeset h2 {
+  font-family: var(--br-display);
+  font-style: italic;
+  letter-spacing: -.005em;
+}
+.md-typeset h1 {
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--md-default-fg-color);
+}
+.md-typeset h2 { font-weight: 800; }
+.md-typeset h2::after {
+  content: "";
+  display: block;
+  width: 3.2rem;
+  height: .22rem;
+  margin-top: .45rem;
+  border-radius: 1rem;
+  background: linear-gradient(90deg, var(--br-orange), var(--br-cyan));
+}
+.md-typeset .br-band h2::after,
+.md-typeset .br-panel h2::after { display: none; }
+
+/* ---------- En-tête et onglets ---------- */
+
+.md-header { box-shadow: none; }
+.md-header__title { font-family: var(--br-display); font-style: italic; font-weight: 800; }
+.md-header__button.md-logo img { height: 2rem; border-radius: 50%; }
+.md-tabs { border-bottom: .15rem solid transparent; border-image: linear-gradient(90deg, var(--br-orange), var(--br-cyan) 40%, transparent) 1; }
+.md-tabs__link { font-weight: 600; opacity: .8; }
+.md-tabs__item--active .md-tabs__link { opacity: 1; color: #fff; box-shadow: inset 0 -.15rem 0 var(--br-orange); padding-bottom: .3rem; }
+
+/* ---------- Bandeau d'accueil ---------- */
+
+.br-hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--br-navy);
+  color: #fff;
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+}
+.br-hero__inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+  align-items: center;
+  gap: 2rem;
+  padding: 2.5rem .8rem 4.5rem;
+}
+.br-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  margin: 0 0 1rem;
+  color: var(--br-orange);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.br-kicker::before { content: ""; width: 2rem; height: .18rem; border-radius: 1rem; background: var(--br-orange); }
+.br-hero h1 {
+  margin: 0 0 1rem;
+  font-family: var(--br-display);
+  font-style: italic;
+  font-weight: 900;
+  font-size: clamp(2rem, 4.6vw, 3.4rem);
+  line-height: 1.02;
+  text-transform: uppercase;
+  text-wrap: balance;
+  color: #fff;
+}
+.br-hero h1 em { font-style: italic; color: var(--br-cyan); }
+.br-hero__lead { max-width: 34rem; margin: 0 0 1.6rem; font-size: 1rem; line-height: 1.6; color: rgba(255, 255, 255, .82); }
+.br-hero__cta { display: flex; flex-wrap: wrap; gap: .6rem; }
+.br-hero .md-button { padding: .65em 1.4em; font-size: .8rem; border: .1rem solid; }
+.br-hero__text { position: relative; z-index: 1; }
+.br-hero__logo { justify-self: center; width: min(100%, 25rem); height: auto; }
+
+.md-typeset .md-button, .br-hero .md-button {
+  border-radius: .4rem;
+  font-weight: 700;
+  transition: transform .15s, background-color .15s, color .15s, border-color .15s;
+}
+.br-hero .md-button { color: #fff; border-color: rgba(255, 255, 255, .5); }
+.br-hero .md-button:hover { border-color: var(--br-cyan); background: rgba(28, 195, 245, .12); color: #fff; }
+.md-typeset .md-button--primary, .br-hero .md-button--primary {
+  background: var(--br-orange);
+  border-color: var(--br-orange);
+  color: #fff;
+}
+.md-typeset .md-button--primary:hover, .br-hero .md-button--primary:hover {
+  background: #ff8c3a;
+  border-color: #ff8c3a;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* Traînées de vitesse, reprises des virgules du logo */
+.br-hero__stripes { position: absolute; inset: 0; pointer-events: none; }
+.br-hero__stripes span {
+  position: absolute;
+  left: -15%;
+  height: 1.1rem;
+  width: 65%;
+  border-radius: 999px;
+  transform: rotate(-13deg);
+  opacity: .9;
+}
+.br-hero__stripes span:nth-child(1) { bottom: 9%; width: 34%; background: linear-gradient(90deg, transparent, var(--br-orange) 85%); }
+.br-hero__stripes span:nth-child(2) { bottom: 4%; left: -20%; width: 40%; height: .7rem; background: linear-gradient(90deg, transparent, var(--br-cyan) 85%); }
+.br-hero__stripes span:nth-child(3) { bottom: 0; left: -22%; height: .35rem; width: 36%; background: linear-gradient(90deg, transparent, var(--br-blue) 85%); opacity: .7; }
+
+@media screen and (max-width: 59.9375em) {
+  .br-hero__inner { grid-template-columns: minmax(0, 1fr); padding-top: 1.5rem; gap: 1rem; }
+  .br-hero__logo { order: -1; width: min(60vw, 15rem); }
+  .br-hero__text { text-align: center; }
+  .br-hero__lead { margin-inline: auto; font-size: .85rem; }
+  .br-hero__cta { justify-content: center; }
+}
+
+/* L'accueil est en pleine largeur : pas de colonne de lecture étroite */
+.md-content:has(.br-home) .md-content__inner { max-width: none; }
+.br-home > :first-child { margin-top: 0; }
+
+/* ---------- Chiffres clés ---------- */
+
+.br-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .8rem;
+  margin: 0 0 2.5rem;
+}
+.br-stats > div {
+  padding: .9rem 1rem;
+  border-left: .2rem solid var(--br-orange);
+  background: var(--br-surface);
+  border-radius: 0 .4rem .4rem 0;
+}
+.br-stats strong {
+  display: block;
+  font-family: var(--br-display);
+  font-style: italic;
+  font-weight: 900;
+  font-size: 1.5rem;
+  line-height: 1.1;
+}
+.br-stats span { font-size: .72rem; color: var(--br-muted); }
+@media screen and (max-width: 44.9375em) { .br-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* ---------- Deux colonnes ---------- */
+
+.br-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+  margin: 1.5rem 0 2.5rem;
+}
+.br-home .br-split, .br-panel.br-split { align-items: center; }
+.br-split > * { min-width: 0; }
+@media screen and (max-width: 59.9375em) { .br-split { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- Cartes ---------- */
+
+.br-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: .9rem;
+  margin: 1.2rem 0 2rem;
+}
+.br-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  padding: 1.1rem 1.1rem 1.2rem;
+  border: 1px solid var(--br-surface-line);
+  border-radius: .6rem;
+  background: var(--br-surface);
+  transition: border-color .15s, transform .15s;
+}
+.md-typeset .br-card p { margin: 0; font-size: .78rem; color: var(--br-muted); }
+.md-typeset .br-card h3 { margin: .2rem 0 0; font-size: .95rem; font-weight: 700; }
+.br-card .twemoji { font-size: 1.6rem; color: var(--br-blue); }
+[data-md-color-scheme="slate"] .br-card .twemoji { color: var(--br-cyan); }
+/* Carte entièrement cliquable : le lien du titre couvre toute la carte */
+.md-typeset .br-card--link h3 a:not(.headerlink) { color: inherit; }
+.md-typeset .br-card--link h3 a:not(.headerlink)::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+/* Pas d'ancre « ¶ » dans les titres de cartes : elle capterait le clic à la place du lien */
+.md-typeset .br-card .headerlink { display: none; }
+.br-card--link:hover, .br-card--link:focus-within { border-color: var(--br-orange); transform: translateY(-2px); }
+.md-typeset .br-card--link h3 a:not(.headerlink):focus-visible { outline: none; }
+.br-card--link:focus-within { outline: .15rem solid var(--br-orange); outline-offset: 2px; }
+.br-card__more { margin-top: auto; padding-top: .5rem; font-size: .75rem; font-weight: 700; color: var(--md-typeset-a-color); }
+
+/* ---------- Panneau sombre (robot) ---------- */
+
+.br-panel {
+  position: relative;
+  overflow: hidden;
+  margin: 2.5rem 0;
+  padding: 1.8rem;
+  border-radius: .8rem;
+  background: var(--br-navy);
+  color: #fff;
+}
+.md-typeset .br-panel h2 { margin-top: 0; color: #fff; }
+.md-typeset .br-panel p { color: rgba(255, 255, 255, .82); }
+.md-typeset .br-panel a:not(.md-button) { color: var(--br-cyan); }
+.br-panel .md-button:not(.md-button--primary) { color: #fff; border-color: rgba(255, 255, 255, .5); }
+
+/* ---------- Plan technique (emplacement photo / visuel à venir) ---------- */
+
+.br-blueprint {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 3;
+  border: 1px solid rgba(28, 195, 245, .35);
+  border-radius: .6rem;
+  color: var(--br-cyan);
+  background-color: #01284f;
+  background-image:
+    linear-gradient(rgba(28, 195, 245, .12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(28, 195, 245, .12) 1px, transparent 1px),
+    linear-gradient(rgba(28, 195, 245, .05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(28, 195, 245, .05) 1px, transparent 1px);
+  background-size: 4rem 4rem, 4rem 4rem, 1rem 1rem, 1rem 1rem;
+  text-align: center;
+  font-family: var(--br-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: .85rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.br-blueprint .twemoji { display: block; margin: 0 auto .5rem; font-size: 3rem; opacity: .8; }
+
+/* ---------- Badges ---------- */
+
+.br-badge {
+  display: inline-block;
+  padding: .15rem .55rem;
+  border-radius: .25rem;
+  background: var(--br-orange);
+  color: #fff;
+  font-size: .65rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+.br-badge--cyan { background: var(--br-cyan); color: var(--br-navy-deep); }
+
+/* ---------- Bandeau d'appel ---------- */
+
+.br-band {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1rem;
+  margin: 3rem 0 1rem;
+}
+.br-band > div {
+  padding: 1.5rem;
+  border-radius: .8rem;
+  background: linear-gradient(135deg, var(--br-navy) 0%, var(--br-navy-2) 100%);
+  color: #fff;
+}
+.br-band > div:nth-child(2) { background: linear-gradient(135deg, #c85a0c 0%, var(--br-orange) 100%); }
+.md-typeset .br-band h2 { margin: 0 0 .5rem; font-size: 1.3rem; color: #fff; }
+.md-typeset .br-band p { color: rgba(255, 255, 255, .88); }
+.br-band .md-button { color: #fff; border-color: #fff; }
+.br-band .md-button:hover { background: #fff; color: var(--br-navy); border-color: #fff; }
+
+/* ---------- Frise de saison ---------- */
+
+.br-timeline { position: relative; margin: 1.5rem 0 2rem; padding-left: 1.6rem; }
+.br-timeline::before { content: ""; position: absolute; left: .4rem; top: .3rem; bottom: .3rem; width: .15rem; background: linear-gradient(var(--br-orange), var(--br-cyan)); border-radius: 1rem; }
+.br-timeline > div { position: relative; margin-bottom: 1.1rem; }
+.br-timeline > div::before { content: ""; position: absolute; left: -1.5rem; top: .25rem; width: .7rem; height: .7rem; border-radius: 50%; background: var(--md-default-bg-color); border: .15rem solid var(--br-orange); }
+.md-typeset .br-timeline strong { display: block; font-family: var(--br-display); font-style: italic; font-size: .95rem; }
+.md-typeset .br-timeline p { margin: .1rem 0 0; color: var(--br-muted); font-size: .8rem; }
+
+/* ---------- Pied de page ---------- */
+
+.br-foot { display: flex; gap: .8rem; align-items: flex-start; }
+.br-foot img { border-radius: 50%; flex-shrink: 0; }
+.br-foot__sdk { margin-top: .2rem; color: var(--br-cyan); }
+.br-foot__small { margin-top: .2rem; font-size: .6rem; opacity: .7; }
+
+@media (prefers-reduced-motion: reduce) {
+  .br-card, .md-typeset .md-button { transition: none; }
+  .br-card--link:hover, .md-typeset .md-button--primary:hover { transform: none; }
+}
+
+/* Badge « Bientôt » en coin de carte */
+.br-card .br-badge { position: absolute; top: .9rem; right: .9rem; }
+.md-typeset .br-card > p:last-child { margin-top: auto; padding-top: .5rem; }
+
+/* Boutons sur fond coloré (bandeaux, panneau robot) : toujours blancs, y compris en mode sombre */
+[data-md-color-scheme] .md-typeset .br-band .md-button,
+[data-md-color-scheme] .md-typeset .br-panel .md-button:not(.md-button--primary) { color: #fff; border-color: #fff; }
+[data-md-color-scheme] .md-typeset .br-band .md-button:hover { background: #fff; color: var(--br-navy); }
+
+/* ---------- Partenaires : une tuile « plan technique » qui contient les logos (blancs, lisibles dans les deux modes) ---------- */
+
+.br-logowall {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0 2rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(28, 195, 245, .35);
+  border-radius: .6rem;
+  background-color: #01284f;
+  background-image:
+    linear-gradient(rgba(28, 195, 245, .12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(28, 195, 245, .12) 1px, transparent 1px),
+    linear-gradient(rgba(28, 195, 245, .05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(28, 195, 245, .05) 1px, transparent 1px);
+  background-size: 4rem 4rem, 4rem 4rem, 1rem 1rem, 1rem 1rem;
+}
+.md-typeset .br-logo {
+  /* Emplacement standard : même boîte pour chaque partenaire et pour « Votre logo ici » */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  width: 11rem;
+  height: 6.5rem;
+  padding: .8rem;
+  border: .1rem solid rgba(28, 195, 245, .25);
+  border-radius: .4rem;
+  color: rgba(255, 255, 255, .7);
+  font-size: .55rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  text-align: center;
+  transition: transform .15s, border-color .15s;
+}
+.br-logo img { max-width: 100%; max-height: 2.6rem; width: auto; height: auto; object-fit: contain; }
+.md-typeset a.br-logo:hover { color: #fff; border-color: var(--br-orange); transform: translateY(-2px); }
+.md-typeset .br-logo--empty { border-style: dashed; border-color: rgba(28, 195, 245, .5); color: var(--br-cyan); }
+.md-typeset .br-logo--empty p { margin: 0; }
+.br-logo--empty .twemoji { font-size: 1.6rem; }

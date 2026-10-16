@@ -1,0 +1,24 @@
+{#- Pied de page : identité de l'équipe, et version du SDK de référence sur les pages Code de la base de connaissances. -#}
+{% set en = config.theme.language == "en" %}
+{% set sdk = config.extra.sdk %}
+<div class="md-copyright br-foot">
+  <img src="{{ 'assets/images/logo-128.png' | url }}" alt="" width="44" height="44">
+  <div>
+    <div class="md-copyright__highlight">
+      <strong>Blades Runners 92</strong> · FTC #{{ config.extra.team.number }} ·
+      {% if en %}Hosted by Lycée Léonard de Vinci, Levallois-Perret, France{% else %}Accueillie par le lycée Léonard de Vinci, Levallois-Perret{% endif %}
+    </div>
+    {% if page and page.url and "kb/code/" in page.url %}
+      <div class="br-foot__sdk">
+        {% if en %}
+          Reference FTC SDK: v{{ sdk.version }} ({{ sdk.season }} season) · Gradle {{ sdk.gradle }} · AGP {{ sdk.agp }}
+        {% else %}
+          SDK FTC de référence : v{{ sdk.version }} (saison {{ sdk.season }}) · Gradle {{ sdk.gradle }} · AGP {{ sdk.agp }}
+        {% endif %}
+      </div>
+    {% endif %}
+    <div class="br-foot__small">
+      {% if en %}<em>FIRST</em>® and FIRST® Tech Challenge are registered trademarks of FIRST®, which does not sponsor or endorse this site.{% else %}<em>FIRST</em>® et FIRST® Tech Challenge sont des marques déposées de FIRST®, qui ne parraine ni n'approuve ce site.{% endif %}
+    </div>
+  </div>
+</div>

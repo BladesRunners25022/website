@@ -1,0 +1,27 @@
+{#- Page d'accueil : bandeau plein écran sous les onglets. Les textes viennent du front matter de index.md (un par langue). -#}
+{% extends "main.html" %}
+
+{% block tabs %}
+  {{ super() }}
+  {% set hero = page.meta.hero %}
+  <section class="br-hero">
+    <div class="br-hero__stripes" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="md-grid br-hero__inner">
+      <div class="br-hero__text">
+        <p class="br-kicker">{{ hero.kicker | replace("{number}", config.extra.team.number) }}</p>
+        <h1>{{ hero.title }}</h1>
+        <p class="br-hero__lead">{{ hero.lead }}</p>
+        <div class="br-hero__cta">
+          {% for b in hero.buttons %}
+            <a class="md-button{% if loop.first %} md-button--primary{% endif %}" href="{{ b.link | url }}">{{ b.label }}</a>
+          {% endfor %}
+        </div>
+      </div>
+      <img class="br-hero__logo" src="{{ 'assets/images/logo.webp' | url }}" alt="{{ hero.logo_alt }}" width="640" height="640">
+    </div>
+  </section>
+{% endblock %}
+
+{% block content %}
+  {{ page.content }}
+{% endblock %}
